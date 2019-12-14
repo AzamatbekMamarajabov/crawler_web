@@ -73,3 +73,28 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = ProductModel
         fields = '__all__'
+
+
+
+
+class ProductTopForm(forms.ModelForm):
+
+    name = forms.CharField(
+        label='',
+        widget=forms.TextInput(
+            attrs={
+                
+                'id': 'name',
+                
+                'placeholder': 'name ',
+                'class': 'form-control  rounded-pill mx-3 ',
+                'autocomplete': 'off',
+
+            }
+        ),
+        required=False,
+    )
+
+    class Meta:
+        model = ProductModel
+        fields = ('name',)

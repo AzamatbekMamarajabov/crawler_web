@@ -4,7 +4,7 @@ from .forms import MainSearchForm
 from django.views.generic import FormView, ListView
 from django.views.generic.edit import FormMixin
 from product.models import ProductModel
-from product.forms import ProductForm
+from product.forms import ProductForm, ProductTopForm
 
 class MainSearchPage(FormView):
 
@@ -46,7 +46,7 @@ class MainSearchPage(FormView):
 
 class ResultsPage(FormMixin, ListView):
     template_name = 'designview/results/results_page.html'
-    form_class = ProductForm
+    form_class = ProductTopForm
     model = ProductModel
     success_url = reverse_lazy('resultspage')
     paginate_by = 1
@@ -74,14 +74,12 @@ class ResultsPage(FormMixin, ListView):
         form = self.form_class(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
-            year = form.cleaned_data['year']
-            price = form.cleaned_data['price']
-            name = form.cleaned_data['name']
+            
             print(name)
             return render(
                 request, self.template_name, {
                     'form': form, 
-                    'product': self.model.objects.filter(name__contains=name, year__contains=year),
+                    'product': self.model.objects.filter(name__contains=name),
                 })
 
         return render(request, self.template_name, {'form': form})
