@@ -1,0 +1,27 @@
+{% extends 'cmsadmin/base.html' %} {% block title %} Manager Admin: User {% endblock %} {% block content %}
+
+<main class="pt-5 mx-lg-5 content  mb-5">
+    <div class="container-fluid mt-5 mb-4">
+
+        <div class="row justify-content-md-center wow fadeIn">
+            <div class="col-md-9 ">
+                <div class="card ">
+                    <div class="card-header peach-gradient text-white">
+                        <h4 class="card-title ">Delete Manager</h4>
+                        <p class="card-category"> Here is a subtitle for this table</p>
+                    </div>
+                    <div class='card-body text-center '>
+                        <form method="post">{% csrf_token %}
+                            <h3 class="my-4">Want to delete "{{ management.fullname }}" ?</h3>
+                            <input class="btn btn-outline-danger" type="submit" value="Delete">
+                            <a class="btn btn-outline-dark" href="{%url 'cmsmanager_users_list'%}">Cancel</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+{% endblock %}

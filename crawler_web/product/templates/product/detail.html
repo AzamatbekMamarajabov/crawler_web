@@ -1,0 +1,46 @@
+{% extends 'cmsadmin/base.html' %} {% block title %} Manager Admin {% endblock %} {% block content %}
+
+<!-- End Navbar -->
+<main class="pt-5 mx-lg-5">
+    <div class="container-fluid mt-5">
+
+        <div class="row mb-4 wow fadeIn">
+            <div class="col-md-12">
+                <div class="card   card-body-cascade  ">
+                    <div class="card-header aqua-gradient white-text  px-5">
+                        <h4 class="card-title ">Manager Details</h4>
+                        <p class="card-category"> Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <ul class="list-group">
+                                    <li class="list-group-item mb-2"><strong>fullname :</strong> {{management.fullname}}</li>
+
+                                    <li class="list-group-item mb-2"><strong>username :</strong> {{management.username}}</li>
+
+                                    <li class="list-group-item mb-2"><strong>bio :</strong> {{management.bio_info}}</li>
+                                    <li class="list-group-item mb-2"><strong>role :</strong> {{management.role}}</li>
+
+                                </ul>
+                            </div>
+                            <div class="col-md-4">
+                                <a href="{% url 'cmsmanager_management_update'  management.id %}"
+                                class="btn-floating btn  btn-outline-info"> <i class="fas fa-edit">
+                                    update</i></a>
+                                <a href="{% url 'cmsmanager_management_delete'  management.id %}"
+                                    class="btn-floating btn  btn-outline-danger"> <i class="fas fa-trash-alt">
+                                    delete</i></a>
+
+                               
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

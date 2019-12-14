@@ -1,0 +1,118 @@
+{% extends 'designview/_base.html' %} {% block title %} Main Admin: Category {% endblock %} 
+
+{% block header %}
+
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-light white scrolling-navbar">
+    <div class="container-fluid">
+
+        <!-- Brand -->
+        <a class="navbar-brand waves-effect" href="" target="_blank">
+            <strong class="blue-text">UzPOS Analytics</strong>
+        </a>
+
+        <!-- Collapse -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Links -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+            <!-- Left -->
+            <div class="navbar-nav mr-auto">
+              
+            </div>
+
+            <!-- Right -->
+            <div class="navbar-nav nav-flex-icons">
+
+
+            </div>
+
+        </div>
+
+    </div>
+</nav>
+<!-- Navbar -->
+
+{% endblock%}
+
+
+{% block content %}
+
+
+<main class="pt-5 mx-md-5 mr-5 content">
+    <div class="container-fluid mt-5">
+
+        <div class="row mb-4 wow fadeIn">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header blue-gradient text-white">
+                        <div class="row">
+                            <div class="col-6">
+                                <h4 class="card-title ">Product</h4>
+
+                            </div>
+                            <div class="col-3">
+                                <a class="btn btn-white text-info float-right" href="{% url 'product_create' %}">
+                                    Create Product</a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        Price
+                                    </th>
+                                    <th>
+                                        Year
+                                    </th>
+                                    <th>
+                                        Detail
+                                    </th>
+
+                                </thead>
+                                <tbody>
+                                    {% for item in product %}
+                                    <tr>
+
+                                        <td>
+                                            {{item.name}}
+                                        </td>
+                                        <td>
+                                            {{item.price}}
+                                        </td>
+                                        <td>
+                                            {{item.year}}
+                                        </td>
+                                        <td>
+                                            <a href="{% url 'product_detail' item.pk  %}"
+                                                class="btn-floating  btn waves-effect btn-outline-info"> <i
+                                                    class="fas fa-file-alt"></i> info</i></a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+
+
+{% endblock%}
