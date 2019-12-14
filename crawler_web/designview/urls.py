@@ -1,9 +1,9 @@
 
-from django.urls import path, include
+from django.urls import path, re_path, include
 from . import views
 
 
 urlpatterns = [
     path('', views.MainSearchPage.as_view(), name='main_searchpage'),
-    path('results/', views.ResultsPage, name='resultspage'),
+    re_path('results/' ,views.ResultsPage.as_view(), name='resultspage'),
 ]

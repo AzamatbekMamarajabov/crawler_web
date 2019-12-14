@@ -9,7 +9,7 @@ from .forms import ProductForm
 
 class ProductListView(ListView):
     model = ProductModel
-    queryset = ProductModel.objects.filter()
+    queryset = ProductModel.objects.all()
     template_name = 'product/list.html'
     context_object_name = 'product'
 
@@ -31,7 +31,6 @@ class ProductDeleteView(DeleteView):
     template_name = 'product/delete.html'
     success_url = reverse_lazy('product_list')
     context_object_name = 'product'
-
 
 
 class ProductDetailView(DetailView):
