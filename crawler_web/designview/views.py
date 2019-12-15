@@ -3,8 +3,8 @@ from django.urls import reverse, reverse_lazy
 from .forms import MainSearchForm
 from django.views.generic import FormView, ListView
 from django.views.generic.edit import FormMixin
-from product.models import ProductModel
-from product.forms import ProductForm, ProductTopForm
+from product.models import ProductModel, CarModel
+from product.forms import ProductForm, ProductTopForm, CarTopForm
 
 class MainSearchPage(FormView):
 
@@ -46,16 +46,16 @@ class MainSearchPage(FormView):
 
 class ResultsPage(FormMixin, ListView):
     template_name = 'designview/results/results_page.html'
-    form_class = ProductTopForm
-    model = ProductModel
+    form_class = CarTopForm
+    model = CarModel
     success_url = reverse_lazy('resultspage')
-    paginate_by = 1
+    paginate_by = 10
 
     def get(self, request, *args, **kwargs):
 
-        if request.method == 'GET' and 'name' in request.GET:
+        if request.method == 'GET' and 'car_name' in request.GET:
 
-            name = request.GET.get('name', '')
+            name = request.GET.get('car_name', '')
             print(name)
 
             form = self.form_class(request.GET)
@@ -64,7 +64,7 @@ class ResultsPage(FormMixin, ListView):
             return render(
                 request, self.template_name, {
                     'form': form, 
-                    'product': self.model.objects.filter(name__contains=name),
+                    'product': self.model.objects.filter(name__contains=name)[:10],
                 })
         form = self.form_class()
         return render(request, self.template_name, {'form': form})
@@ -73,13 +73,13 @@ class ResultsPage(FormMixin, ListView):
 
         form = self.form_class(request.POST)
         if form.is_valid():
-            name = form.cleaned_data['name']
+            name = form.cleaned_data['car_name']
             
             print(name)
             return render(
                 request, self.template_name, {
                     'form': form, 
-                    'product': self.model.objects.filter(name__contains=name),
+                    'product': self.model.objects.filter(car_name__contains=name)[:10],
                 })
 
         return render(request, self.template_name, {'form': form})
