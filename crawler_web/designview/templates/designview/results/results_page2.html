@@ -4,25 +4,47 @@
 
 <!-- Start Header Area -->
 
+<div class="container-fluid h-30 px-0" style="background-image:url('../bg1.jpg')!important;">
+    <!--Main layout-->
+    <div class="d-flex align-items-center flex-column justify-content-center h-100 mx-0 text-black-50" style="background-color: azure!important ;"> 
+        <h1 class="display-4" style="color:cadetblue!important;">Find Your Auto</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="row  d-flex  align-items-center flex-row justify-content-center h-100">
+
+                <div class="col-md-3 col-sm-10 mb-3 ">
+                    {{form.car_name}}
+                </div>
+
+                <div class="col-md-3 col-sm-10 mb-3 ">
+                    {{form.car_year}}
+                </div>
+                <!-- <div class="col-md-3 col-sm-10 mb-3 ">
+                    {{form.price_bottom}}
+                </div>
+                <div class="col-md-3 col-sm-10 mb-3 ">
+                    {{form.price_top}}
+                </div> -->
+                <div class="col-md-3 col-sm-10 mb-3  ">
+                    {{form.website}}
+                </div>
+
+                <div class="col-md-3 col-sm-10 d-flex justify-content-center">
+                    <button class=" rounded-pill btn btn-md btn-info ">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
 
 <header>
     <div class="blog_right_sidebar">
         <aside class="single_sidebar_widget search_widget">
 
 
-            <form method="POST">
-                {% csrf_token %}
-                <div class="input-group">
-                    {{form.car_name}}
-                    
-                    {{form.car_year}}
 
-                </div>
-                <span class="input-group">
-                    <button class="btn btn-default" type="button"><i class="lnr lnr-magnifier"></i></button>
-                </span>
-
-            </form>
     </div>
     <!-- /input-group -->
     <div class="br"></div>

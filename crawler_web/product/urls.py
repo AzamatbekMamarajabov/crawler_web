@@ -1,18 +1,13 @@
-from django.urls import path
+from django.urls import path, re_path
 
-from . import views
+from .views import *
 
 
 urlpatterns = [
 
-    path('', views.ProductListView.as_view(),
-         name='product_list'),
-    path('<int:pk>/', views.ProductDetailView.as_view(),
-         name='product_detail'),
-    path('<int:pk>/update', views.ProductUpdateView.as_view(),
-         name='product_update'),
-    path('create/', views.ProductCreateView.as_view(),
-         name='product_create'),
-    path('<int:pk>/delete', views.ProductDeleteView.as_view(),
-         name='product_delete'),
+     path('product_listing/', CarListing.as_view(), name = 'listing'),
+     path("ajax/websites/", getWebsites, name = 'get_websites'),
+     path("ajax/variety/", getvariety, name = 'get_varieties'),
+     path("ajax/province/", getProvince, name = 'get_provinces'),
+     path("ajax/region/", getRegion, name = 'get_regions'),
 ]

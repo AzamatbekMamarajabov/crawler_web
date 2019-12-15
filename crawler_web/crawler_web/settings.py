@@ -27,20 +27,23 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    #my apps
+    # my apps
     'myuser',
     'designview',
     'product',
-    
 
-    #3rd party apps
 
+    # 3rd party apps
+    "rest_framework",
+    'corsheaders',
 
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -103,10 +106,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
-
 AUTH_USER_MODEL = 'myuser.MyUser'
-
 
 
 # Internationalization
@@ -132,5 +132,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static'),
 )
+
+
+CORS_ORIGIN_ALLOW_ALL = True
