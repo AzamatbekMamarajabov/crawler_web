@@ -95,16 +95,24 @@ class ResultsPage(FormMixin, ListView):
 
         form = self.form_class(request.POST)
         if form.is_valid():
-            year = '0'
+           
             website = []
             website1 = ''
-
             name = form.cleaned_data['car_name']
             year = form.cleaned_data['car_year']
             region = form.cleaned_data['region']
-            # price_bottom = form.cleaned_data['price_bottom']
-            # price_top = form.cleaned_data['price_top']
+            price_bottom = form.cleaned_data['price_bottom']
+            price_top = form.cleaned_data['price_top']
+            if not year:
+                year = '0'
+            if not price_bottom:
+                price_bottom ='0'
+            price_bottom = int(float(price_bottom.strip()))
+            if not price_top:
+                price_top ='100000000'
+            price_top = int(float(price_top.strip()))
 
+           
             print(year)
             # print(price_top)
 
@@ -122,7 +130,7 @@ class ResultsPage(FormMixin, ListView):
                         Q(Q(car_year__gt=year) | Q(car_year__isnull=True))
                         & Q(car_name__contains=name) & Q(website__contains=website1)
                         & Q(region__contains=region)
-                        # & Q(Q(car_year__gt=year) | Q(car_year__isnull=True))
+                        & Q(Q(car_price__gt=price_bottom)& Q(car_price__lt=price_top))
                     )[:100],
                 })
 

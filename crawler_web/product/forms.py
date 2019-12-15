@@ -155,9 +155,8 @@ class CarTopForm(forms.ModelForm):
         label='',
         widget=forms.TextInput(
             attrs={
-
-                'id': 'price',
-
+                'type': 'text',
+                
                 'placeholder': 'min price ',
                 'class': 'form-control  rounded-pill  mx-3 ',
                 'autocomplete': 'off',
@@ -203,7 +202,7 @@ class CarTopForm(forms.ModelForm):
 
     class Meta:
         model = CarModel
-        fields = ('car_name','car_year', 'region',)
+        fields = ('car_name','car_year', 'region','price_bottom', 'price_top',)
 
 class CarWebForm(forms.ModelForm):
 
