@@ -98,10 +98,10 @@ class ResultsPage(FormMixin, ListView):
             year = '0'
             website = []
             website1 = ''
-            
+
             name = form.cleaned_data['car_name']
             year = form.cleaned_data['car_year']
-            
+            region = form.cleaned_data['region']
             # price_bottom = form.cleaned_data['price_bottom']
             # price_top = form.cleaned_data['price_top']
 
@@ -119,9 +119,10 @@ class ResultsPage(FormMixin, ListView):
                 request, self.template_name, {
                     'form': form,
                     'product': self.model.objects.filter(
-                        Q(
-                            Q(car_year__gt=year) | Q(car_year__isnull=True))
+                        Q(Q(car_year__gt=year) | Q(car_year__isnull=True))
                         & Q(car_name__contains=name) & Q(website__contains=website1)
+                        & Q(region__contains=region)
+                        # & Q(Q(car_year__gt=year) | Q(car_year__isnull=True))
                     )[:100],
                 })
 

@@ -183,10 +183,27 @@ class CarTopForm(forms.ModelForm):
         required=False,
     )
 
+    region = forms.CharField(
+        label='',
+        widget=forms.TextInput(
+            attrs={
+
+                'id': 'region',
+
+                'placeholder': 'region ',
+                'class': 'form-control  rounded-pill  mx-3 ',
+                'autocomplete': 'off',
+
+            }
+        ),
+        required=False,
+    )
+
+
 
     class Meta:
         model = CarModel
-        fields = ('car_name','car_year' )
+        fields = ('car_name','car_year', 'region',)
 
 class CarWebForm(forms.ModelForm):
 
@@ -208,6 +225,8 @@ class CarWebForm(forms.ModelForm):
         choices=WEBSITE_CHOICES,
         required=False,
     )
+
+
 
     class Meta:
         model = CarModel
