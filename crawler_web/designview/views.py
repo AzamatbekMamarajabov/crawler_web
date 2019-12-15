@@ -95,6 +95,10 @@ class ResultsPage(FormMixin, ListView):
 
         form = self.form_class(request.POST)
         if form.is_valid():
+            year = '0'
+            website = []
+            website1 = ''
+            
             name = form.cleaned_data['car_name']
             year = form.cleaned_data['car_year']
             
